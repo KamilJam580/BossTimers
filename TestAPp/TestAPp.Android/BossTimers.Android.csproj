@@ -95,9 +95,9 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestAPp\TestAPp.csproj">
-      <Project>{1A70F879-34AF-4D37-A366-4D26FC7732F3}</Project>
-      <Name>TestAPp</Name>
+    <ProjectReference Include="..\TestAPp\BossTimers.csproj">
+      <Project>{BDFE27C6-B0DE-42F6-A5CE-C879C9B68D58}</Project>
+      <Name>BossTimers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

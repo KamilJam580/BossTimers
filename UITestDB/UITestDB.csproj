@@ -42,9 +42,9 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestAPp\TestAPp\TestAPp.csproj">
+    <ProjectReference Include="..\TestAPp\TestAPp\BossTimers.csproj">
       <Project>{bdfe27c6-b0de-42f6-a5ce-c879c9b68d58}</Project>
-      <Name>TestAPp</Name>
+      <Name>BossTimers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
