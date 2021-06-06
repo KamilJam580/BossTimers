@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAPp.Views.BossDetailPage"
+             xmlns:local="clr-namespace:TestAPp.ViewModels"  
+             xmlns:model="clr-namespace:TestAPp.Models"  
+             Title="{Binding BossCopy.Name}">
+
+
+
+    <StackLayout Spacing="20" Padding="15" Orientation="Vertical">
+
+
+        <StackLayout Spacing="20" Padding="15" Orientation="Horizontal">
+            <Image Source="{Binding BossCopy.ImagePath}" 
+                                   VerticalOptions="Center" 
+                                   HeightRequest="250"/>
+
+            <Label x:Name="Timer" Text="{Binding BossCopy.TimeToDefeat, Mode=OneWay}" FontSize="Large"/>
+
+        </StackLayout>
+
+        <StackLayout Spacing="20" Padding="15" Orientation="Horizontal" >
+            <Button Text="SetCd"                                 
+                    Command="{Binding DefeatCommand}"     
+                    CommandParameter="{Binding BossCopy.Id}"/>
+            <Button Text="RemoveCd"                                 
+                    Command="{Binding UnDefeatCommand}"     
+                    CommandParameter="{Binding BossCopy.Id}"/>
+        </StackLayout>
+
+    </StackLayout>
+
+
+
+
+
+
+
+</ContentPage>

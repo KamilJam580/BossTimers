@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="TestAPp.Views.BossesPage2"
+			 Title="{Binding Title}"
+			 xmlns:local="clr-namespace:TestAPp.ViewModels"  
+			 xmlns:model="clr-namespace:TestAPp.Models"  
+			 xmlns:converter ="clr-namespace:TestAPp"
+			 xmlns:fab="clr-namespace:FAB.Forms;assembly=FAB.Forms">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Example Item"
+		 IconImageSource="icon_about.png" 
+		 Order="Primary"
+		 Priority="0" 
+		 Command="{Binding Source={RelativeSource AncestorType={x:Type local:BossesViewModel}}, Path=AddBossCommand}"		
+					/>
+
+        <ToolbarItem Text="Example Item2"
+		 IconImageSource="icon_feed.png" 
+		 Order="Primary"
+		 Priority="1" 
+			/>
+
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout  BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <Image Source="background.png" VerticalOptions="Center" Aspect="Fill"/>
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+
+
+
+
+
+        <RefreshView  x:DataType="local:BossesViewModel" 
+					  Command="{Binding LoadBossesCommand}" 
+					  IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+					  Grid.Column="0" Grid.Row="0">
+            <CollectionView x:Name="BossesListView"
+							ItemsSource="{Binding Bosses}"
+							SelectionMode="None"
+							ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:Boss">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="{Binding ImagePath}" VerticalOptions="Center" HeightRequest="64" 
+									   Grid.Row="0"  Grid.Column="0" 
+									   Grid.RowSpan="2"/>
+
+                                <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListBossTextStyle}" 
+									   FontSize="16" 
+									   Grid.Row="0" Grid.Column="1"/>
+
+
+                                <Label Text="{Binding TimeToDefeat, Mode=OneWay}" 
+									   LineBreakMode="NoWrap" 
+									   FontSize="16" 
+									   Grid.Row="1"  Grid.Column="1"/>
+
+                            </Grid>
+
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+									NumberOfTapsRequired="1"
+									Command="{Binding Source={RelativeSource AncestorType={x:Type local:BossesViewModel}}, Path=BossTapped}"		
+									CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+
+
+    </Grid>
+
+</ContentPage>
